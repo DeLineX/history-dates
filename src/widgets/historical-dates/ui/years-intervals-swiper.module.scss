@@ -1,0 +1,18 @@
+.slide {
+  display: flex;
+  gap: 80px;
+  justify-content: center;
+}
+
+.year {
+  font-size: 200px;
+  font-weight: bold;
+
+  &.from {
+    color: #5d5fef;
+  }
+
+  &.to {
+    color: #ef5da8;
+  }
+}
