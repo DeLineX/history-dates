@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+$transition: 0.2s ease-in-out;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1470px;
+  padding: 0 15px;
+}
+
+body {
+  overflow-anchor: none;
+  font-family: "PT Sans";
+}

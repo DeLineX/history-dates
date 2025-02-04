@@ -1,0 +1,23 @@
+.root {
+  padding-left: 80px;
+  padding-right: 160px;
+}
+
+.slide:global(.swiper-slide-next) {
+  width: 400px !important;
+}
+
+.slide {
+  width: 320px !important;
+}
+
+.title {
+  font: 25px "Bebas Neue";
+  color: #3877ee;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-size: 20px;
+  color: #42567a;
+}

@@ -1,0 +1,49 @@
+.root {
+  margin-top: 170px;
+  margin-bottom: 100px;
+}
+
+.title {
+  padding-left: 80px;
+  display: block;
+  position: relative;
+  font-size: 56px;
+  font-weight: 500;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: linear-gradient(#3877ee, #ef5da8);
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.yearsInterval {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 80px;
+}
+
+.year {
+  font-size: 200px;
+  font-weight: bold;
+
+  &.from {
+    color: #5d5fef;
+  }
+
+  &.to {
+    color: #ef5da8;
+  }
+}
