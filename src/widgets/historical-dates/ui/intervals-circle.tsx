@@ -17,7 +17,7 @@ export interface IntervalsCircleProps {
 
 const SVG_SIZE = {
   width: 586,
-  height: 586,
+  height: 530,
 } as const;
 
 const CIRCLE = {
@@ -99,6 +99,7 @@ export const IntervalsCircle: FC<IntervalsCircleProps> = ({
       viewBox={[0, 0, SVG_SIZE.width, SVG_SIZE.height].join(" ")}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={styles.circle}
     >
       <circle
         opacity="0.2"

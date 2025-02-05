@@ -24,13 +24,12 @@
 
 .container {
   position: relative;
+  margin-bottom: 56px;
 }
 
 .yearsInterval {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
   width: 100%;
-  padding-block: 25px;
+  height: 100%;
 }
