@@ -1,4 +1,4 @@
-@use "/src/index.scss" as *;
+@use "/src/vars" as *;
 
 .dotHoverHelper {
   fill: transparent;
@@ -12,6 +12,7 @@
 }
 
 .num {
+  font-size: 20px;
   fill: #42567a;
   opacity: 0;
   pointer-events: none;
@@ -40,8 +41,8 @@
 
     .dot {
       r: 27.5px;
-      fill: #fff;
-      stroke: #42567a;
+      fill: $background;
+      stroke: rgba(#303e58, 0.5);
     }
 
     .title {
@@ -57,7 +58,10 @@
 }
 
 .circle {
+  stroke: $blackBlue;
+  opacity: 0.2;
+}
+
+.wrapper {
   display: block;
-  padding-bottom: 40px;
-  box-sizing: content-box;
 }

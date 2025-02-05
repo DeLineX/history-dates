@@ -56,11 +56,13 @@ export const HistoricalDates: FC<HistoricalDatesProps> = ({
     <div className={styles.root}>
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.container}>
-        <IntervalsCircle
-          activeDotKey={activeIntervalKey}
-          dots={intervals}
-          onDotClick={handleDotClick}
-        />
+        <div className={styles.bgDecoration}>
+          <IntervalsCircle
+            activeDotKey={activeIntervalKey}
+            dots={intervals}
+            onDotClick={handleDotClick}
+          />
+        </div>
         <div className={styles.yearsInterval}>
           <YearsIntervalsSwiper
             intervals={intervals}

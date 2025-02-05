@@ -1,19 +1,26 @@
+@use "./vars" as *;
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-$transition: 0.2s ease-in-out;
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 * {
   margin: 0;
   box-sizing: border-box;
 }
 
+.wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1485px 1fr;
+  min-height: 100vh;
+}
+
 .container {
-  margin: 0 auto;
-  max-width: 1470px;
-  padding: 0 15px;
+  padding-left: 30px;
+  padding-right: 15px;
+  grid-column: 2 / 3;
 }
 
 body {
   overflow-anchor: none;
   font-family: "PT Sans";
+  background-color: $background;
 }

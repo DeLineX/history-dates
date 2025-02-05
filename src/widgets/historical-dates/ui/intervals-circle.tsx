@@ -99,14 +99,13 @@ export const IntervalsCircle: FC<IntervalsCircleProps> = ({
       viewBox={[0, 0, SVG_SIZE.width, SVG_SIZE.height].join(" ")}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={styles.circle}
+      className={styles.wrapper}
     >
       <circle
-        opacity="0.2"
         cx={CIRCLE.x}
         cy={CIRCLE.y}
         r={CIRCLE.radius}
-        stroke="#42567A"
+        className={styles.circle}
       />
       {dotsCoordinates.map((point, idx) => renderDot(point, idx))}
     </svg>
