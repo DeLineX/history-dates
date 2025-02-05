@@ -35,6 +35,7 @@ export const HistoricalDates: FC<HistoricalDatesProps> = ({
     intervals.at(0)?.key,
   );
   const yearsSwiper = useRef<SwiperClass | null>(null);
+  const eventsSwiper = useRef<SwiperClass | null>(null);
 
   const handleDotClick: IntervalsCircleProps["onDotClick"] = (dot) => {
     setActiveIntervalKey(dot.key);
@@ -50,6 +51,7 @@ export const HistoricalDates: FC<HistoricalDatesProps> = ({
   const handleYearsIntervalChange: YearsIntervalsSwiperProps["onSlideChange"] =
     (interval) => {
       setActiveIntervalKey(interval.key);
+      eventsSwiper.current?.slideTo(0);
     };
 
   return (
@@ -73,7 +75,12 @@ export const HistoricalDates: FC<HistoricalDatesProps> = ({
           />
         </div>
       </div>
-      <EventsSwiper key={activeIntervalKey} data={currentInterval.events} />
+      <EventsSwiper
+        data={currentInterval.events}
+        onSwiper={(swiper) => {
+          eventsSwiper.current = swiper;
+        }}
+      />
     </div>
   );
 };

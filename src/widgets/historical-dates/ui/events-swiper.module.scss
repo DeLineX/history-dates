@@ -1,6 +1,9 @@
+@use "/src/vars" as *;
+
 .root {
   padding-left: 80px;
   padding-right: 160px;
+  position: relative;
 }
 
 .slide:global(.swiper-slide-next) {
@@ -20,4 +23,39 @@
 .description {
   font-size: 20px;
   color: #42567a;
+}
+
+.navigation {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  display: flex;
+  gap: 20px;
+  // flex-direction: column;
+}
+
+.navEl {
+  width: 40px;
+  aspect-ratio: 1;
+  background: #fff;
+  border-radius: 100%;
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 15px rgba(#3877ee, 0.1));
+  transition: $transition;
+
+  &:hover {
+    scale: 1.05;
+  }
+
+  &:global(.swiper-button-disabled) {
+    opacity: 0;
+    cursor: default;
+
+    &:hover {
+      scale: initial;
+    }
+  }
+
+  display: grid;
+  place-items: center;
 }
