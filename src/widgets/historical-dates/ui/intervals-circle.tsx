@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { FC, Key, useState } from "react";
+import { FC, Key, useEffect, useRef, useState } from "react";
 import { Point } from "shared/lib";
 import { getCircleEdgePoint } from "../lib/get-circle-edge-point";
 import styles from "./intervals-circle.module.scss";
@@ -17,7 +17,7 @@ export interface IntervalsCircleProps {
 
 const SVG_SIZE = {
   width: 586,
-  height: 530,
+  height: 586,
 } as const;
 
 const CIRCLE = {
@@ -35,21 +35,48 @@ export const IntervalsCircle: FC<IntervalsCircleProps> = ({
   const dotsCount = dots.length;
   const activeDotIndex = dots.findIndex((dot) => dot.key === activeDotKey);
 
-  const dotsCoordinates: Point[] = [];
-
   const dAngle = 360 / dotsCount;
-  let angleOffset = -60 - dAngle * activeDotIndex;
-  dots.forEach(() => {
-    const point = getCircleEdgePoint(
+  const [offset, setOffset] = useState(dAngle * activeDotIndex);
+  const newOffsetRef = useRef<number>(offset);
+  const prevOffsetRef = useRef<number>(offset);
+  const currentOffsetRef = useRef<number>(offset);
+
+  currentOffsetRef.current = offset;
+
+  useEffect(() => {
+    newOffsetRef.current = dAngle * activeDotIndex;
+    prevOffsetRef.current = currentOffsetRef.current;
+  }, [activeDotIndex, activeDotKey, dAngle]);
+
+  useEffect(() => {
+    const speed = 150;
+    const deltaDeg =
+      Math.abs(prevOffsetRef.current - newOffsetRef.current) / speed;
+
+    const timeoutId = setTimeout(() => {
+      if (Math.abs(offset - newOffsetRef.current) > deltaDeg) {
+        setOffset(
+          (offset) =>
+            offset + Math.sign(newOffsetRef.current - offset) * deltaDeg,
+        );
+      } else {
+        setOffset(newOffsetRef.current);
+      }
+    }, 1);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [activeDotIndex, dAngle, offset]);
+
+  const dotsCoordinates = dots.map((_, idx) =>
+    getCircleEdgePoint(
       CIRCLE.x,
       CIRCLE.y,
       CIRCLE.radius,
-      angleOffset,
-    );
-
-    dotsCoordinates.push(point);
-    angleOffset += dAngle;
-  });
+      dAngle * idx - 60 - offset,
+    ),
+  );
 
   const renderDot = (point: Point, idx: number) => {
     const dot = dots[idx];
