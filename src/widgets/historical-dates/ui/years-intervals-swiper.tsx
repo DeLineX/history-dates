@@ -1,5 +1,5 @@
 import type { FC, Key } from "react";
-import { Swiper, SwiperSlide, type SwiperProps } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import type SwiperClass from "swiper";
 import styles from "./years-intervals-swiper.module.scss";
 import clsx from "clsx";
@@ -14,13 +14,11 @@ interface Interval {
 export interface YearsIntervalsSwiperProps {
   intervals: Interval[];
   onSlideChange: (interval: Interval) => void;
-  onSwiper: SwiperProps["onSwiper"];
 }
 
 export const YearsIntervalsSwiper: FC<YearsIntervalsSwiperProps> = ({
   intervals,
   onSlideChange,
-  onSwiper,
 }) => {
   const handleChange = (swiper: SwiperClass) => {
     onSlideChange(intervals[swiper.realIndex]);
@@ -29,7 +27,6 @@ export const YearsIntervalsSwiper: FC<YearsIntervalsSwiperProps> = ({
   return (
     <Swiper
       onRealIndexChange={handleChange}
-      onSwiper={onSwiper}
       modules={[Pagination, Navigation]}
       navigation={{
         prevEl: `.${styles.prevEl}`,

@@ -1,9 +1,5 @@
 @use "/src/vars" as *;
 
-.dotHoverHelper {
-  fill: transparent;
-}
-
 .dot {
   fill: #42567a;
   stroke: transparent;
@@ -29,8 +25,7 @@
   dominant-baseline: central;
 }
 
-.group {
-  &.active {
+.active {
     cursor: default;
 
     .num {
@@ -50,11 +45,6 @@
       user-select: auto;
     }
   }
-
-  &.hover {
-    cursor: pointer;
-  }
-}
 
 .circle {
   stroke: $blackBlue;

@@ -10,7 +10,6 @@ interface Dot {
 }
 
 export interface IntervalsCircleProps {
-  onDotClick: (dot: Dot) => void;
   activeDotKey: Key | undefined;
   dots: Dot[];
 }
@@ -29,9 +28,7 @@ const CIRCLE = {
 export const IntervalsCircle: FC<IntervalsCircleProps> = ({
   dots,
   activeDotKey,
-  onDotClick,
 }) => {
-  const [hoveredDotKey, setHoveredDotKey] = useState<Dot["key"] | null>(null);
   const dotsCount = dots.length;
   const activeDotIndex = dots.findIndex((dot) => dot.key === activeDotKey);
 
@@ -81,33 +78,15 @@ export const IntervalsCircle: FC<IntervalsCircleProps> = ({
   const renderDot = (point: Point, idx: number) => {
     const dot = dots[idx];
     const isActive = dot.key === activeDotKey;
-    const isHovered = dot.key === hoveredDotKey;
     return (
       <g
         key={dot.key}
-        className={clsx(styles.group, {
-          [styles.active]: isHovered || isActive,
-          [styles.hover]: isHovered && !isActive,
+        className={clsx({
+          [styles.active]: isActive,
         })}
       >
-        <g
-          onMouseEnter={() => setHoveredDotKey(dot.key)}
-          onMouseLeave={() => setHoveredDotKey(null)}
-        >
-          <circle
-            cx={point.x}
-            cy={point.y}
-            r={10}
-            className={styles.dotHoverHelper}
-          />
-          <circle
-            cx={point.x}
-            cy={point.y}
-            className={clsx(styles.dot, {
-              [styles.active]: isActive,
-            })}
-            onClick={() => onDotClick(dot)}
-          />
+        <g>
+          <circle cx={point.x} cy={point.y} className={clsx(styles.dot)} />
           <text x={point.x} y={point.y} className={styles.num}>
             {idx + 1}
           </text>
