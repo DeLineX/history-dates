@@ -11,12 +11,25 @@
   display: grid;
   grid-template-columns: 2fr 1485px 1fr;
   min-height: 100vh;
+
+  @include tablet {
+    grid-template-columns: 2fr 830px 1fr;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr 320px 1fr;
+  }
 }
 
 .container {
   padding-left: 30px;
   padding-right: 15px;
   grid-column: 2 / 3;
+
+  @include mobile {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 body {

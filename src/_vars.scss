@@ -1,6 +1,19 @@
 $transition: 0.2s ease-in-out;
-$background: #F4F5F9;
+$background: #f4f5f9;
 
-$blackBlue: #42567A;
+$blackBlue: #42567a;
 
 $decorationLineColor: rgba($blackBlue, 0.1);
+
+@mixin mobile {
+  @media screen and (max-width: 400px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}
+

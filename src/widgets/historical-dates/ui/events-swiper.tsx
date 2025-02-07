@@ -22,7 +22,12 @@ export const EventsSwiper: FC<EventsSwiperProps> = ({ data, onSwiper }) => {
   return (
     <div className={styles.root}>
       <Swiper
-        spaceBetween={80}
+        spaceBetween={40}
+        breakpoints={{
+          400: {
+            spaceBetween: 80,
+          },
+        }}
         slidesPerView="auto"
         className={styles.swiper}
         modules={[Navigation]}
@@ -38,10 +43,37 @@ export const EventsSwiper: FC<EventsSwiperProps> = ({ data, onSwiper }) => {
       </Swiper>
       <div className={styles.navigation} ref={forceRender}>
         <div className={styles.navEl} ref={prevElRef}>
-          {"<"}
+          <svg
+            style={{
+              transform: "rotate(180deg)",
+            }}
+            width="10"
+            height="14"
+            viewBox="0 0 10 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.50012 0.750001L7.75012 7L1.50012 13.25"
+              stroke="#42567A"
+              stroke-width="2"
+            />
+          </svg>
         </div>
         <div className={styles.navEl} ref={nextElRef}>
-          {">"}
+          <svg
+            width="10"
+            height="14"
+            viewBox="0 0 10 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.50012 0.750001L7.75012 7L1.50012 13.25"
+              stroke="#42567A"
+              stroke-width="2"
+            />
+          </svg>
         </div>
       </div>
     </div>

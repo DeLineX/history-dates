@@ -14,11 +14,17 @@ interface Interval {
 export interface YearsIntervalsSwiperProps {
   intervals: Interval[];
   onSlideChange: (interval: Interval) => void;
+  nextEl?: HTMLElement | null;
+  prevEl?: HTMLElement | null;
+  paginationEl?: HTMLElement | null;
 }
 
 export const YearsIntervalsSwiper: FC<YearsIntervalsSwiperProps> = ({
   intervals,
   onSlideChange,
+  nextEl,
+  prevEl,
+  paginationEl,
 }) => {
   const handleChange = (swiper: SwiperClass) => {
     onSlideChange(intervals[swiper.realIndex]);
@@ -29,20 +35,16 @@ export const YearsIntervalsSwiper: FC<YearsIntervalsSwiperProps> = ({
       onRealIndexChange={handleChange}
       modules={[Pagination, Navigation]}
       navigation={{
-        prevEl: `.${styles.prevEl}`,
-        nextEl: `.${styles.nextEl}`,
-      }}
-      pagination={{
-        type: "fraction",
-        formatFractionCurrent: (num) =>
-          num < 10 ? `${num}`.padStart(2, "0") : num,
-        formatFractionTotal: (num) =>
-          num < 10 ? `${num}`.padStart(2, "0") : num,
-        el: `.${styles.pagination}`,
-        renderFraction: (currentClass, totalClass) =>
-          `<span class="${currentClass}"></span>/<span class="${totalClass}"></span>`,
+        prevEl,
+        nextEl,
       }}
       className={styles.swiper}
+      pagination={{
+        el: paginationEl,
+      }}
+      breakpoints={{
+        400: { pagination: false },
+      }}
     >
       {intervals.map(({ from, to, key }) => (
         <SwiperSlide key={key}>
@@ -52,18 +54,6 @@ export const YearsIntervalsSwiper: FC<YearsIntervalsSwiperProps> = ({
           </div>
         </SwiperSlide>
       ))}
-      <div
-        className={styles.controls}
-        style={{
-          zIndex: 2,
-        }}
-      >
-        <div className={styles.pagination} />
-        <div className={styles.navigation}>
-          <div className={clsx(styles.prevEl, styles.navEl)}>{"<"}</div>
-          <div className={clsx(styles.nextEl, styles.navEl)}>{">"}</div>
-        </div>
-      </div>
     </Swiper>
   );
 };

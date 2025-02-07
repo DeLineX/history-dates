@@ -4,25 +4,48 @@
   padding-left: 80px;
   padding-right: 160px;
   position: relative;
+
+  @include mobile {
+    margin-top: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .slide:global(.swiper-slide-next) {
   width: 400px !important;
+
+  @include mobile {
+    width: 100% !important;
+    opacity: 0.4;
+  }
 }
 
 .slide {
   width: 320px !important;
+
+  @include mobile {
+    width: 60% !important;
+  }
 }
 
 .title {
   font: 25px "Bebas Neue";
   color: #3877ee;
   margin-bottom: 15px;
+
+  @include mobile {
+   font-size: 16px;
+  }
 }
 
 .description {
   font-size: 20px;
   color: #42567a;
+
+  @include mobile {
+   font-size: 14px;
+  }
 }
 
 .navigation {
@@ -31,7 +54,6 @@
   right: 40px;
   display: flex;
   gap: 20px;
-  // flex-direction: column;
 }
 
 .navEl {
@@ -42,9 +64,19 @@
   cursor: pointer;
   filter: drop-shadow(0px 0px 15px rgba(#3877ee, 0.1));
   transition: $transition;
+  display: grid;
+  place-items: center;
+
+  svg path {
+    transition: $transition;
+  }
 
   &:hover {
     scale: 1.05;
+
+    svg path {
+      stroke: #3877EE;
+    }
   }
 
   &:global(.swiper-button-disabled) {
@@ -53,9 +85,11 @@
 
     &:hover {
       scale: initial;
+      
     }
   }
 
-  display: grid;
-  place-items: center;
+  @include mobile {
+    display: none;
+  }
 }
